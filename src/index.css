@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Improved table styles */
+table {
+  @apply w-full text-base;
+}
+
+th {
+  @apply px-6 py-3 text-left text-sm font-semibold text-gray-600 tracking-wider bg-gray-50;
+}
+
+td {
+  @apply px-6 py-4 text-sm text-gray-700;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* Improved modal styles */
+.modal-container {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center p-4 overflow-y-auto;
+}
+
+.modal-content {
+  @apply bg-white rounded-lg shadow-xl w-full max-w-4xl relative my-8;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* Form controls */
+input, select, textarea {
+  @apply text-base;
+}
+
+/* Button styles */
+button {
+  @apply text-base;
+}
+
+/* Status badges */
+.status-badge {
+  @apply px-3 py-1 text-sm font-medium rounded-full;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+  @apply bg-white rounded-lg shadow p-6;
+}
+
+/* Navigation */
+.nav-link {
+  @apply text-base font-medium;
+}
+
+/* Form labels */
+label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+/* Table container with scroll */
+.table-container {
+  @apply overflow-x-auto;
+  max-height: calc(100vh - 16rem);
+}

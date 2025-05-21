@@ -1,0 +1,22 @@
+<div class="ticket-detail">
+  <h2>{{ticket.title}}</h2>
+  <p>{{ticket.description}}</p>
+
+  <div class="ticket-actions">
+    <div class="assign-section">
+      <select [(ngModel)]="selectedUserId" class="form-control">
+        <option value="">Select user to assign</option>
+        <option *ngFor="let user of users" [value]="user.id">
+          {{user.username}}
+        </option>
+      </select>
+      <button class="btn btn-primary" (click)="assignTicket()">
+        Assign Ticket
+      </button>
+    </div>
+    
+    <div *ngIf="ticket.assignee" class="assigned-to">
+      Currently assigned to: {{ticket.assignee.username}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component Testing Page</title>
+</head>
+<body>
+    <h1>Component Test Page</h1>
+    <div id="component-container">
+        <!-- Components will be rendered here -->
+    </div>
+    <script type="module">
+        // Import your components here
+        import '../src/components/your-component.js';
+        
+        // Add event listeners and log component events
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Test page loaded');
+        });
+    </script>
+</body>
+</html>

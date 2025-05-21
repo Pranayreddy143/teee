@@ -1,0 +1,16 @@
+// ...existing code...
+.assign-section {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.assign-section select {
+  min-width: 200px;
+}
+
+.assigned-to {
+  margin-top: 10px;
+  font-style: italic;
+}
+// ...existing code...
