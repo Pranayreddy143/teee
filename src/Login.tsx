@@ -3,6 +3,7 @@ import { useAuth } from './auth';
 import { Headphones } from 'lucide-react';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 interface Organization {
   id: string;
