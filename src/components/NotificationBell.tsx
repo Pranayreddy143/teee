@@ -22,10 +22,9 @@ const NotificationBell: React.FC<NotificationBellProps> = ({ notifications, setN
       
       try {
         const { data, error } = await supabase
-          .from('tickets')
-          .select('*')
-          .eq('assigned_to', user.id)
-          .eq('status', 'open');
+          .rpc('get_user_notifications', {
+            p_user_id: user.id
+          });
 
         if (error) throw error;
         setNotifications(data || []);

@@ -220,7 +220,7 @@ export default function CreateTicketModal({ isOpen, onClose, organizationId, onT
         resolution: formData.resolution,
         status: formData.status,
         closed_on: formData.status === 'closed' ? formData.closedOn : null,
-        closed_by: selectedClosedBy, // Use selectedClosedBy instead of formData.closedBy
+        closed_by: selectedClosedBy,
         assigned_to: selectedUser,
         organization_id: organizationId
       };
@@ -234,7 +234,7 @@ export default function CreateTicketModal({ isOpen, onClose, organizationId, onT
 
         if (error) throw error;
         
-        // Send notification for assignment change if needed
+        // Notify about assignment change if needed
         if (selectedUser && selectedUser !== ticket.assigned_to) {
           await supabase.rpc('notify_ticket_assignment', {
             p_ticket_id: ticket.id,
