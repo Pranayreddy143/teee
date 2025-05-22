@@ -142,45 +142,35 @@ export function Login() {
             </div>
           </div>
 
-          <div>
+          <div className="space-y-2">
             <label htmlFor="organization" className="block text-sm font-medium text-gray-700">
               Organization
             </label>
-            <div className="mt-1 relative">
-              <select
-                id="organization"
-                name="organization"
-                value={selectedOrg}
-                onChange={(e) => setSelectedOrg(e.target.value)}
-                className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                disabled={isLoadingOrgs}
-              >
-                {isLoadingOrgs ? (
-                  <option value="">Loading organizations...</option>
-                ) : (
-                  <>
-                    <option value="">Select an organization</option>
-                    {organizations.map(org => (
-                      <option key={org.id} value={org.id}>
-                        {org.name}
-                      </option>
-                    ))}
-                  </>
-                )}
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
+            <select
+              id="organization"
+              name="organization"
+              value={selectedOrg}
+              onChange={(e) => setSelectedOrg(e.target.value)}
+              className="block w-full px-3 py-2 text-base border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:bg-gray-100 disabled:cursor-not-allowed"
+              disabled={isLoadingOrgs}
+            >
+              <option value="">Select an organization</option>
+              {organizations.map(org => (
+                <option key={org.id} value={org.id}>
+                  {org.name}
+                </option>
+              ))}
+            </select>
+            {isLoadingOrgs && (
+              <p className="mt-1 text-sm text-gray-500">Loading organizations...</p>
+            )}
           </div>
 
           <div>
             <button
               type="submit"
               disabled={isLoading || isLoadingOrgs || !selectedOrg}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
