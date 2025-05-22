@@ -29,34 +29,31 @@ export function Login() {
   }, []);
 
   const fetchOrganizations = async () => {
-    setIsLoadingOrgs(true);
-    setError('');
-    
     try {
-      const { data, error } = await supabase
+      setIsLoadingOrgs(true);
+      setError('');
+
+      const { data: orgs, error: orgsError } = await supabase
         .from('organizations')
         .select('*')
         .order('name');
 
-      if (error) {
-        console.error('Supabase error:', error);
-        setError('Failed to load organizations. Please try again later.');
+      if (orgsError) {
+        console.error('Error fetching organizations:', orgsError);
+        setError('Failed to load organizations. Please try again.');
         return;
       }
 
-      if (!data || data.length === 0) {
-        setError('No organizations found. Please contact your administrator.');
+      if (!orgs || orgs.length === 0) {
+        setError('No organizations found.');
         return;
       }
 
-      setOrganizations(data);
-      // Only set selected org if none is selected yet
-      if (!selectedOrg && data.length > 0) {
-        setSelectedOrg(data[0].id);
-      }
+      setOrganizations(orgs);
+      setSelectedOrg(orgs[0].id);
     } catch (error) {
-      console.error('Error fetching organizations:', error);
-      setError('Failed to load organizations. Please try again later.');
+      console.error('Error:', error);
+      setError('An unexpected error occurred.');
     } finally {
       setIsLoadingOrgs(false);
     }
@@ -77,7 +74,7 @@ export function Login() {
       const selectedOrgData = organizations.find(org => org.id === selectedOrg);
       if (selectedOrgData) {
         localStorage.setItem('selectedOrganization', JSON.stringify(selectedOrgData));
-        navigate(`/${selectedOrgData.slug}`);
+        navigate(`/org/${selectedOrgData.slug}`);
       }
     } catch (error: any) {
       console.error('Error signing in:', error);
@@ -188,4 +185,4 @@ export function Login() {
   );
 }
 
-export default Login
+export default Login;
